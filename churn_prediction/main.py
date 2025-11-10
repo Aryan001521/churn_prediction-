@@ -2,9 +2,11 @@ import streamlit as st
 import pandas as pd
 import joblib
 import numpy as np
+import os
+import joblib
 
-# Load model (make sure xgboost installed and pkl is in same folder)
-model = joblib.load("xgboost_churn_model.pkl")
+model_path = os.path.join(os.path.dirname(__file__), "xgboost_churn_model.pkl")
+model = joblib.load(model_path)
 
 st.title("💡 Customer Churn Prediction (XGBoost)")
 
@@ -105,3 +107,4 @@ if submitted:
         ["Contract", "0 = Month-to-month, 1 = One year, 2 = Two year"],
         ["PaymentMethod", "0 = Electronic check, 1 = Mailed check, 2 = Bank transfer (auto), 3 = Credit card (auto)"]
     ], columns=["Feature", "Mapping"]))
+
